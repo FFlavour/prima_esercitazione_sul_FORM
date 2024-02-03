@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+
+<HEAD>
+
+    <TITLE>Simple Form</TITLE>
+
+    <meta charset="UTF-8">
+
+</HEAD>
+
+<body>
+
+    <FORM id="invio" NAME="RequestForm" action="recuperadati" method="post">
+
+        <table border="0">
+
+            <tr>
+
+                <td>
+
+                    UserName:
+
+                </td>
+
+                <td>
+
+                    <INPUT TYPE="text" NAME="username" VALUE="" SIZE=20>
+
+                </td>
+
+            </tr>
+
+            <tr>
+
+                <td>
+
+                    Password:
+
+                </td>
+
+                <td>
+
+                    <INPUT TYPE="text" NAME="password" VALUE="" SIZE=12>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+        <INPUT TYPE="Submit" VALUE="Invia">
+
+        <INPUT TYPE="reset" VALUE="Cancella">
+
+    </FORM>
+
+    <script>
+
+        document.getElementById("invio").addEventListener("submit", controlla);
+
+        function controlla(event) {
+
+            let message = ""; // create error message string variable
+
+            let strusername = document.RequestForm.username.value
+
+            let patt = /^[a-zA-Z]{6,12}$/;
+
+            let result1 = patt.test(strusername);
+
+            let strpassword = document.RequestForm.password.value;
+
+            let patt1 = /^[a-zA-Z0-9]{8,12}$/;
+
+            let result2 = patt1.test(strpassword);
+
+            // Test Username
+
+            if (!result1) {
+
+                message = message + "Errore per favore, compila il campo \"Username\" da 6 a 12 char.\n";
+
+            }
+
+            // Test Password
+
+            if (!result2) {
+
+                message = message + "Errore per favore, compilare il campo \"Password\" da 8 a 12 char.\n";
+
+            }
+
+            // Test per la presenza di errori
+
+            if (message.length > 0) {
+
+                message =
+
+                    "_______________________________________________________\n\n" +
+
+                    "La richiesta non è stata inviata in quanto alcuni campi\n" +
+
+                    "del form non sono stati compilati.\n" +
+
+                    "______________________________________________________\n" +
+
+                    "\n" + message;
+
+                alert(message);
+
+                event.preventDefault();
+
+            }
+
+            else {
+
+            }
+
+        } // end function controlla()
+
+    </SCRIPT>
+
+</body>
+
+</html>
+
+</html>
